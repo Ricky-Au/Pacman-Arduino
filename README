@@ -1,0 +1,106 @@
+# ----------------------------------------------
+#   Name: Ricky Au
+#   
+#   Project: Pacman on arduino
+# ----------------------------------------------
+
+Description of Project:
+    We created a Pacman recreation on the arduino. Our game requires has the user choose
+    a diffuculty at the beginning of each game. The three diffuculties effect how many lives
+    you have and how fast the ghosts will move at. Another change we made in our game is
+    the ghosts are able to move through walls but pacman is confined to paths on the map.
+    The ghosts move towards pacman at all times if they ever overlap each other they teleport
+    back to one of the ghosts starting postions. When the player runs out of lives by being
+    touched by the ghosts too many times the player will play through a lights minigame similar
+    to simon says where the player must copy what the lights displayed on the led. Once the
+    minigame is finished. The player is able to see how their score stacked up with previous
+    highscores. If the player wants to play the game again they may press the joystick again
+    to prompt for inputing name and play the game.
+
+LEDs minigame description:
+    The fundamental of this minigame is that of Simon Says - simply follow the
+    order of the lights that were shown. For example, if the array of the LEDS
+    was [2, 0, 1, 2, 2, 1, 0, 2, 1, 1, 1, 2, 0, 1, 0, 0, 2, 1, 0, 1], then the
+    first stage would be LED 2. It would light up for a moment, then the player
+    needs to press LED 2. The second stage would be 2, 0, and the player would
+    press LED 2 then 0. Stage three: 2, 0, 1, player presses 2, 0 and then 1.
+    Fourth stage: 2, 0, 1, 2, player presses LED 2, 0, 1, then 2. Each stage
+    starts from the beginning, and the player has to press each LED in the order
+    from the start. If at any point in the sequence the player presses the incorrect
+    LED, the game ends. It is, essentially, Simon Says with LEDS.
+
+Included Files:
+    * README
+Included Files: Pacman Client
+    * Makefile
+    * Pacman.cpp
+
+Included Files: Highscore server
+    * Makefile
+    * highscore.cpp
+    * serialport.cpp
+    * serialport.h
+    * scores.txt
+
+Accessories:
+    * 1 Arduino Mega Board (AMG)
+    * Wires
+    * 1 Adafruit ILI9341 (display)
+    * 1 SainSmart JoyStick
+    * 1 micro sd card preloaded with lcd_image.h and lcd_image.cpp
+    * 3 LEDS
+    * 3 Buttons
+
+Wiring instructions:
+    Source: Wiring for Adafruit ILI9341 File (on eclass)
+    For Display:
+    Board Pin <---> Arduino Pin
+    ===========================
+    GND       <--->      GND
+    Vin       <--->      5V
+    3Vo                  NOT CONNECTED
+    CLK       <--->      52
+    MISO      <--->      50
+    MOSI      <--->      51
+    CS        <--->      10
+    D/C       <--->       9
+    RST                  NOT CONNECTED
+    Lite                 NOT CONNECTED
+    Y+        <--->      A2 (analog pin)
+    X+        <--->       4  (digital pin)
+    Y-        <--->       5  (digital pin)
+    X-        <--->      A3 (analog pin)
+    IM0 - IM3            NOT CONNECTED (they expect a 3.3v signal, DON'T CONNECT!)
+    CCS       <--->       6
+    CD                   NOT CONNECTED
+
+    For Joy-stick:
+    VRx       <--->       A1
+    VRy       <--->       A0
+    SW        <--->       D2
+
+    For Minigame:
+    LED1      <--->      13
+    LED2      <--->      12
+    LED3      <--->      11
+
+    Button1   <--->      8
+    Button2   <--->      7
+    Button3   <--->      3
+
+
+Running Instructions:
+    1) enter the file directory of Pacman client and type make upload into the terminal
+    2) enter the "Highscores" directory and enter "make"
+    3) type ""./highscores" in the terminal
+    4) the terminal should prompt you to enter a name
+    5) after entering a name, follow the instructions on the LCD display
+    6) Play our version of pacman!
+    7) When game is over and you see the list of higscores press joystick to play again
+    8) going through from Steps 4) to 8)
+
+Sources:
+    1) function mfill line 218 highscore.cpp
+       https://stackoverflow.com/questions/37150306/how-to-reinitialize-array-of-struct by user M.M
+    2) swap function built off eclass quicksort
+    3) All server client communication built off of our Assignment 2 part 2
